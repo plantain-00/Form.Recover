@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>title</title>
+        <script src="~/Scripts/jquery-1.9.0.min.js"></script>
+    </head>
+    <body>
+        <input type="text" id="textId1"/>
+        <input type="text" id="textId2" value="0"/>
+        <input type="checkbox" id="checkboxId"/>
+        <input type="radio" id="radioId1" checked="checked" name="radioName"/>
+        <input type="radio" id="radioId2" name="radioName"/>
+        <select id="selectId">
+            <option value="a">aaaaa</option>
+            <option value="b">bbbbb</option>
+        </select>
+        <button onclick=" saveThis(); ">Save</button>
+        <a href="@Url.Action("Recover")" target="_blank">Recover</a>
+        <script type="text/javascript">
+            function saveThis() {
+                $.post("@Url.Action("Save")", {
+                    data : JSON.stringify({
+                        textId1 : $("#textId1").val(),
+                        textId2 : parseFloat($("#textId2").val()),
+                        checkboxId : $("#checkboxId").is(":checked"),
+                        radioId1 : $("#radioId1").is(":checked"),
+                        selectId : $("#selectId option:selected").val()
+                    }),
+                    html : document.documentElement.outerHTML
+                }, function() {
+                    alert("saved");
+                });
+            }
+        </script>
+    </body>
+</html>
