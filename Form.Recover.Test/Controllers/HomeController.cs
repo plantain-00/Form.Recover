@@ -30,13 +30,30 @@ namespace Form.Recover.Test.Controllers
             doc.SetCheckbox("checkboxId", jObject);
             doc.SetRadiobox("radioId1", jObject, "radioId1", "radioId2");
             doc.SetSelect("selectId", jObject);
+            doc.SetTextarea("textereaId", jObject);
+            doc.SetRadiobox(jObject, "radioValue", "radioId3", "radioId4", "radioId5");
             html = doc.DocumentNode.WriteTo();
 
+            doc.ReplaceWithValue("textId1");
+            doc.ReplaceWithValue("textId2");
+            doc.Disable("checkboxID");
+            doc.Disable("radioId1", "radioId2");
+            doc.ReplaceWithValue4Select("selectId", "text");
+            doc.ReplaceWithValue("textereaId");
+            doc.Disable("radioId3", "radioId4", "radioId5");
+            var htmlReadOnly = doc.DocumentNode.WriteTo();
+
             Session["html"] = html;
+            Session["htmlReadOnly"] = htmlReadOnly;
             return new EmptyResult();
         }
 
         public ActionResult Recover()
+        {
+            return View();
+        }
+
+        public ActionResult Show()
         {
             return View();
         }

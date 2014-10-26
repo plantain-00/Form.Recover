@@ -12,11 +12,16 @@
         <input type="radio" id="radioId1" checked="checked" name="radioName"/>
         <input type="radio" id="radioId2" name="radioName"/>
         <select id="selectId">
-            <option value="a">aaaaa</option>
-            <option value="b">bbbbb</option>
+            <option value="a" text="aaaaa">aaaaa</option>
+            <option value="b" text="bbbbb">bbbbb</option>
         </select>
+        <textarea id="textereaId"></textarea>
+        <input type="radio" id="radioId3" checked="checked" name="radioName2" value="3"/>
+        <input type="radio" id="radioId4" name="radioName2" value="4"/>
+        <input type="radio" id="radioId5" name="radioName2" value="5"/>
         <button onclick=" saveThis(); ">Save</button>
         <a href="@Url.Action("Recover")" target="_blank">Recover</a>
+        <a href="@Url.Action("Show")" target="_blank">Show</a>
         <script type="text/javascript">
             function saveThis() {
                 $.post("@Url.Action("Save")", {
@@ -25,7 +30,9 @@
                         textId2 : parseFloat($("#textId2").val()),
                         checkboxId : $("#checkboxId").is(":checked"),
                         radioId1 : $("#radioId1").is(":checked"),
-                        selectId : $("#selectId option:selected").val()
+                        selectId : $("#selectId option:selected").val(),
+                        textereaId : $("#textereaId").val(),
+                        radioValue : $("input[name='radioName2']:checked").val()
                     }),
                     html : document.documentElement.outerHTML
                 }, function() {
