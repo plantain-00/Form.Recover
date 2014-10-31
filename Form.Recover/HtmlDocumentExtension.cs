@@ -138,7 +138,7 @@ namespace Form.Recover
         /// <param name="jToken"></param>
         public static void SetTextarea(this HtmlDocument doc, string id, JToken jToken)
         {
-            doc.SetText(id, jToken, id);
+            doc.SetTextarea(id, jToken, id);
         }
 
         /// <summary>

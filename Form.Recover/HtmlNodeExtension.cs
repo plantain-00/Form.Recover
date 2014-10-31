@@ -205,7 +205,7 @@ namespace Form.Recover
         /// <param name="name"></param>
         public static void SetTextarea(this HtmlNode node, JToken jToken, string name)
         {
-            node.SetAttributeValue("value", jToken.Get(name));
+            node.InnerHtml = jToken.Get(name);
         }
     }
 }
