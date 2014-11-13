@@ -137,6 +137,14 @@ namespace Form.Recover
             {
                 node.SetAttributeValue("checked", "checked");
             }
+            else
+            {
+                var attribute = node.Attributes.FirstOrDefault(a => a.Name == "checked");
+                if (attribute != null)
+                {
+                    attribute.Remove();
+                }
+            }
         }
 
         /// <summary>
